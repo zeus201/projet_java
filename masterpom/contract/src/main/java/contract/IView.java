@@ -7,11 +7,11 @@ package contract;
  */
 public interface IView {
 
-	/**
-	 * Prints the message.
-	 *
-	 * @param message
-	 *          the message
-	 */
+	public void displayRockford();
+	public void displayGround();
+	public void displayMenu();
+	public void displayStone();
+	public void displayWall();
+	public void displayDiamond();
 	void printMessage(final String message);
 }

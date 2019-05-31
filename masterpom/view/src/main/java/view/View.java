@@ -79,4 +79,40 @@ public final class View implements IView, Runnable {
 	public void setController(final IController controller) {
 		this.viewFrame.setController(controller);
 	}
+
+	@Override
+	public void displayRockford() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void displayGround() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void displayMenu() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void displayStone() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void displayWall() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void displayDiamond() {
+		// TODO Auto-generated method stub
+		
+	}
 }

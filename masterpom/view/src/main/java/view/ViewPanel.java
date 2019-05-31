@@ -1,23 +1,34 @@
 package view;
 
 import java.awt.Graphics;
+
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JPanel;
+import model.hero;
+import model.*;
+import contract.IModel;
+
 
 /**
  * The Class ViewPanel.
  *
- * @author Jean-Aymeric Diet
  */
 class ViewPanel extends JPanel implements Observer {
 
+	private static final int x = 0;
 	/** The view frame. */
-	private ViewFrame					viewFrame;
+	private ViewFrame	viewFrame;
+	private IModel model;
+	private int y;
+	private int hauteur;
+	private int largeur;
+	hero h= new hero( x, y,  hauteur,  largeur);
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= -998294702363713521L;
-
+    static DAOLevel daolevel = new DAOLevel();
+    coordonnees[][]objects = new coordonnees[50][23];
 	/**
 	 * Instantiates a new view panel.
 	 *
@@ -28,6 +39,10 @@ class ViewPanel extends JPanel implements Observer {
 		this.setViewFrame(viewFrame);
 		viewFrame.getModel().getObservable().addObserver(this);
 	}
+	public ViewPanel() {
+		remplissage();
+	}
+	
 
 	/**
 	 * Gets the view frame.
@@ -56,6 +71,31 @@ class ViewPanel extends JPanel implements Observer {
 	public void update(final Observable arg0, final Object arg1) {
 		this.repaint();
 	}
+	public void remplissage() {
+		int j=0;
+		for(int i=0;i<50;i++) {
+			for(j=0; j<23; j++) {
+				if(daolevel.getScenetest()[i][j]=='x') {
+					objects[i][j]= new Background(i*32, j*32, i, j);	
+				}
+				else if (daolevel.getScenetest()[i][j]=='i') {
+					objects[i][j]= new voidd(i*32, j*32, i, j);
+				}
+				else if (daolevel.getScenetest()[i][j]=='l') {
+					objects[i][j]= new blueg(i*32, j*32, i, j);
+				}
+				else if (daolevel.getScenetest()[i][j]=='0') {
+					objects[i][j]= new rock(i*32, j*32, i, j);
+				}
+				else if (daolevel.getScenetest()[i][j]=='w') {
+					objects[i][j]= new enemy(i*32, j*32, i, j);
+				}
+				else if (daolevel.getScenetest()[i][j]=='v') {
+					objects[i][j]= new diamond(i*32, j*32, i, j);
+				}
+			}
+		}
+	}
 
 	/*
 	 * (non-Javadoc)
@@ -64,7 +104,13 @@ class ViewPanel extends JPanel implements Observer {
 	 */
 	@Override
 	protected void paintComponent(final Graphics graphics) {
-		graphics.clearRect(0, 0, this.getWidth(), this.getHeight());
-		graphics.drawString(this.getViewFrame().getModel().getHelloWorld().getMessage(), 10, 20);
+		for(int i=0; i<50; i++) {
+			for(int j=0; j<50; j++) {
+				if(objects[i][j] != null)
+					graphics.drawImage(objects[i][j].getImg(),objects[i][j].getX(),objects[i][j].getY(),this);
+			}
+		}
+		graphics.drawImage(h.getImg(), h.getX(),hauteur, this);
+				repaint();
 	}
-}
+	}
