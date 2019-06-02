@@ -20,6 +20,7 @@ class ViewPanel extends JPanel implements Observer {
 	private static final int x = 0;
 	/** The view frame. */
 	private ViewFrame	viewFrame;
+	DAOLevel l = new DAOLevel();
 	private IModel model;
 	private int y;
 	private int hauteur;
@@ -27,8 +28,8 @@ class ViewPanel extends JPanel implements Observer {
 	hero h= new hero( x, y,  hauteur,  largeur);
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= -998294702363713521L;
-    static DAOLevel daolevel = new DAOLevel();
-    coordonnees[][]objects = new coordonnees[50][23];
+ 
+    coordonnees[][]objects = new coordonnees[25][37];
 	/**
 	 * Instantiates a new view panel.
 	 *
@@ -73,25 +74,28 @@ class ViewPanel extends JPanel implements Observer {
 	}
 	public void remplissage() {
 		int j=0;
-		for(int i=0;i<50;i++) {
-			for(j=0; j<23; j++) {
-				if(daolevel.getScenetest()[i][j]=='x') {
+		for(int i=0;i<25;i++) {
+			for(j=0; j<37; j++) {
+				if(l.getScenetest()[i][j]=='G') {
 					objects[i][j]= new Background(i*32, j*32, i, j);	
 				}
-				else if (daolevel.getScenetest()[i][j]=='i') {
+				else if (l.getScenetest()[i][j]==' ') {
 					objects[i][j]= new voidd(i*32, j*32, i, j);
 				}
-				else if (daolevel.getScenetest()[i][j]=='l') {
+				else if (l.getScenetest()[i][j]=='W') {
 					objects[i][j]= new blueg(i*32, j*32, i, j);
 				}
-				else if (daolevel.getScenetest()[i][j]=='0') {
+				else if (l.getScenetest()[i][j]=='0') {
 					objects[i][j]= new rock(i*32, j*32, i, j);
 				}
-				else if (daolevel.getScenetest()[i][j]=='w') {
+				else if (l.getScenetest()[i][j]=='M') {
 					objects[i][j]= new enemy(i*32, j*32, i, j);
 				}
-				else if (daolevel.getScenetest()[i][j]=='v') {
+				else if (l.getScenetest()[i][j]=='*') {
 					objects[i][j]= new diamond(i*32, j*32, i, j);
+				}
+				else {
+					objects[i][j]= new Background(i*32, j*32, i, j);	
 				}
 			}
 		}
@@ -99,13 +103,34 @@ class ViewPanel extends JPanel implements Observer {
 
 	/*
 	 * (non-Javadoc)
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
 	 *
 	 * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
 	 */
 	@Override
 	protected void paintComponent(final Graphics graphics) {
-		for(int i=0; i<50; i++) {
-			for(int j=0; j<50; j++) {
+		for(int i=0; i<25; i++) {
+			for(int j=0; j<37; j++) {
 				if(objects[i][j] != null)
 					graphics.drawImage(objects[i][j].getImg(),objects[i][j].getX(),objects[i][j].getY(),this);
 			}

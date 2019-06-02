@@ -7,24 +7,24 @@ import com.mysql.jdbc.CallableStatement;
 
 public class DAOLevel {
  static DBConnection connect= new DBConnection();
- private char[][] scenetest= new char[23][50];
+ private static char[][] scenetest= new char[25][37];
  public DAOLevel() {
 	 this.scenetest= this.niveau();
  }
  
  private char[][] niveau (){ 
 	 String strCurrentline= null;
-	 char[][] scenetest = new char [50][23];
+	// char[][] scenetest = new char [25][37];
 	 int j=0;
 			 try { 
-				 final String sql="{call level1()}";
+				 final String sql="{call level()}";
 				 final CallableStatement call= (CallableStatement) connect.getConnection().prepareCall(sql);
 				 call.execute();
 				 final ResultSet resultSet= call.getResultSet();
 				 while(resultSet.next()) {
-					 strCurrentline = resultSet.getString("valeur");
-					 for (int i=0; i<50; i++) {
-						 scenetest [i][j]= strCurrentline.charAt(i);
+					 strCurrentline = resultSet.getString("line");
+					 for (int i=0; i<37; i++) {
+						 scenetest [j][i]= strCurrentline.charAt(i);
 					 }
 					 j++;
 				 }
@@ -34,7 +34,7 @@ public class DAOLevel {
 			 }
 	return scenetest;
  }
- public char[][] getScenetest() {
+ public static char[][] getScenetest() {
 	 return scenetest;
 	
  }

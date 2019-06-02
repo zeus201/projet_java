@@ -19,13 +19,15 @@ import contract.IModel;
 class ViewFrame extends JFrame implements KeyListener {
 
 	/** The model. */
-	private IModel						model;
+	private IModel	model;
 
 	/** The controller. */
-	private IController				controller;
+	private IController	controller;
 	/** The Constant serialVersionUID. */
 	private static final long	serialVersionUID	= -697358409737458175L;
-
+   private ViewPanel viewPanel;
+   private final static int HEIGHT=10000;
+   private final static int WIDTH=10000;
 	/**
 	 * Instantiates a new view frame.
 	 *
@@ -126,13 +128,17 @@ class ViewFrame extends JFrame implements KeyListener {
 	 *          the model
 	 */
 	private void buildViewFrame(final IModel model) {
+		ViewPanel pan = new ViewPanel();
 		this.setModel(model);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 		this.addKeyListener(this);
-		this.setContentPane(new ViewPanel(this));
+		this.setContentPane(pan);
+		this.setVisible(true);
+		this.setTitle("BoulderDash");
 		this.setSize(400 + this.getInsets().left + this.getInsets().right, 60 + this.getInsets().top + this.getInsets().bottom);
 		this.setLocationRelativeTo(null);
+		System.out.println(ViewFrame.HEIGHT+" "+ViewFrame.WIDTH);
 	}
 
 	/**

@@ -97,4 +97,9 @@ public final class Controller implements IController {
 		
 	}
 
+	public void start() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

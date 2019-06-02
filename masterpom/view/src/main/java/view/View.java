@@ -1,6 +1,8 @@
 package view;
 
+import java.awt.HeadlessException;
 import java.awt.event.KeyEvent;
+import java.sql.SQLException;
 
 import javax.swing.SwingUtilities;
 
@@ -10,14 +12,14 @@ import contract.IModel;
 import contract.IView;
 
 /**
- * The Class View.
+ * The Class View. 
  *
  * @author Jean-Aymeric Diet
  */
 public final class View implements IView, Runnable {
 
 	/** The frame. */
-	private final ViewFrame viewFrame;
+	private ViewFrame viewFrame;
 
 	/**
 	 * Instantiates a new view.
@@ -25,59 +27,18 @@ public final class View implements IView, Runnable {
 	 * @param model
 	 *          the model
 	 */
-	public View(final IModel model) {
+	public View(final IModel model) throws HeadlessException, SQLException {
 		this.viewFrame = new ViewFrame(model);
 		SwingUtilities.invokeLater(this);
 	}
-
-	/**
-	 * Key code to controller order.
-	 *
-	 * @param keyCode
-	 *          the key code
-	 * @return the controller order
-	 */
-	protected static ControllerOrder keyCodeToControllerOrder(final int keyCode) {
-		switch (keyCode) {
-			case KeyEvent.VK_G:
-				return ControllerOrder.English;
-			case KeyEvent.VK_F:
-				return ControllerOrder.Francais;
-			case KeyEvent.VK_D:
-				return ControllerOrder.Deutsch;
-			case KeyEvent.VK_I:
-				return ControllerOrder.Indonesia;
-			default:
-				return ControllerOrder.English;
-		}
+	public void setViewFrame(ViewFrame viewFrame) {
+		this.viewFrame=viewFrame;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see contract.IView#printMessage(java.lang.String)
-	 */
-	public void printMessage(final String message) {
-		this.viewFrame.printMessage(message);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see java.lang.Runnable#run()
-	 */
+	@Override
 	public void run() {
+		// TODO Auto-generated method stub
 		this.viewFrame.setVisible(true);
-	}
-
-	/**
-	 * Sets the controller.
-	 *
-	 * @param controller
-	 *          the new controller
-	 */
-	public void setController(final IController controller) {
-		this.viewFrame.setController(controller);
 	}
 
 	@Override
@@ -115,4 +76,19 @@ public final class View implements IView, Runnable {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void printMessage(String message) {
+		// TODO Auto-generated method stub
+		
+	}
+	public static ControllerOrder keyCodeToControllerOrder(int keyCode) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+	
+
+	
 }

@@ -15,7 +15,66 @@ public final class Model extends Observable implements IModel {
 
 	/** The helloWorld. */
 	private HelloWorld helloWorld;
-
+    public static coordonnees[][]objects=new coordonnees[16][13];
+    private static boolean a=true;
+    private static boolean b=true;
+    private static boolean c=true;
+    private static boolean d=true;
+    private static boolean e=true;
+    private static boolean f=true;
+    private static boolean g=true;
+    private static boolean h=true;
+    
+    public static boolean isA() {
+    	return a;
+    }
+    public static void setA(boolean i) {
+    	a=i;
+    }
+    public static boolean isB() {
+    	return b;
+    }
+    public static void setB(boolean i) {
+    	b=i;
+    }
+    public static boolean isC() {
+    	return c;
+    }
+    public static void setC(boolean i) {
+    	c=i;
+    }
+    public static boolean isD() {
+    	return d;
+    }
+    public static void setD(boolean i) {
+    	d=i;
+    }
+    public static boolean isE() {
+    	return e;
+    }
+    public static void setE(boolean i) {
+    	e=i;
+    }
+    public static boolean isF() {
+    	return f;
+    }
+    public static void setF(boolean i) {
+    	f=i;
+    }
+    public static boolean isG() {
+    	return g;
+    }
+    public static void setG(boolean i) {
+    	g=i;
+    }
+    public static boolean isH() {
+    	return h;
+    }
+    public static void setH(boolean i) {
+    	h=i;
+    }
+    
+    
 	/**
 	 * Instantiates a new model.
 	 */
